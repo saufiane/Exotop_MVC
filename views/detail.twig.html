@@ -1,0 +1,27 @@
+{% extends "BaseTemplate.html" %}
+{% block title %}Détail de {{articles.id}} {% endblock %}
+
+
+{% block content %}
+
+<h2>{{articles.titre}}</h2>
+<form action="index.php">
+  <fieldset>
+    <legend>Article {{articles.id}}</legend>
+    <input type="hidden" name="action" value="patch">
+    <input type="hidden" name="id" value="{{articles.id}}">
+    <p> <label for="titre">Titre:</label>
+  <input type="text" name="titre" 
+  value="{{articles.titre}}" required 
+  pattern="^([A-Za-z0-9 ]*)${2,22}" 
+  title="Entrez un nom avec au moins 2 caratères et max 22">
+  <p> <label for="contenu">Contenu:</label>
+    <input type="text"  name="contenu" value="{{articles.contenu}}">
+  <p> <label for="email">Email:</label>
+  <input type="email" name="email" value="{{articles.email}}">
+  <p>
+  <input type="submit" value="modifier">
+</fieldset>
+</form>
+
+{% endblock %}

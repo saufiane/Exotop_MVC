@@ -1,0 +1,48 @@
+{% extends "BaseTemplate.html" %}
+{% block title %}Articles de la base{% endblock %}
+{% block head %}
+{{ parent() }}
+  <link rel="stylesheet" href= "./css/tabstyle.css" />
+  <link rel="stylesheet" href="../css/assets/dist/css/blog.css" />
+{% endblock %}
+
+{% block content %}
+
+<h2>{{article.titre}}</h2>
+<table id="jolie" class="centre" >
+  <tr>
+    <td>ID</td>
+    <td>Titre</td>
+    <td>Contenu</td>
+    <td>Email</td>
+    <td>Suppression</td>
+  </tr>
+  {% for article in articles %}
+    <tr>
+    <td>{{article.id}}</td>
+    <td>
+      <a href="index.php?action=detail&id={{article.id}}&message=">
+      {{article.titre}}
+      </a>
+    </td>
+    <td>{{article.contenu}}</td>
+    <td>{{article.email}}</td>
+    <td>
+      <a href="index.php?action=suppr&id={{article.id}}">
+      X
+      </a>
+    </td>
+  </tr>
+  {% endfor %}
+  <tr>
+    <form method="GET" action="index.php">
+      <td><input type="hidden" name="action" value="add"></td>
+      <td><input type="text" name="titre" required></td>
+      <td><textarea  name="contenu" required></textarea></td>
+      <td><input type="email" name="email" required></td>
+      <td><input type="submit" value="+"></td>
+    </form>
+  </tr>
+</table>
+
+{% endblock %}
